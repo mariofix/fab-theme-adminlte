@@ -7,7 +7,7 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <title>AdminLTE - {% block page_title %}{{app_name}}{% endblock %}</title>
+    <title>{% block page_title %}{{app_name}}{% endblock %}</title>
 
     {% block head_meta %}
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -16,31 +16,34 @@
     {% endblock %}
 
     {% block head_css %}
-      <link href="{{url_for('appbuilder.static',filename='css/bootstrap.min.css')}}" rel="stylesheet">
-      <link href="{{url_for('appbuilder.static',filename='css/font-awesome.min.css')}}" rel="stylesheet">
+      <!-- Google Font: Source Sans Pro -->
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
+      <!-- Font Awesome -->
+      <link rel="stylesheet" href="{{url_for('static',filename='adminlte/plugins/fontawesome-free/css/all.min.css')}}">
+      <!-- icheck bootstrap -->
+      <link rel="stylesheet" href="{{url_for('static',filename='adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+      <!-- AdminLTE -->
+      <link rel="stylesheet" href="{{url_for('static',filename='adminlte/css/adminlte.css')}}">
       {% if appbuilder.app_theme %}
-        <link href="{{url_for('appbuilder.static',filename='css/themes/'+ appbuilder.app_theme )}}" rel="stylesheet">
+        <!-- appbuilder.app_theme = {{ appbuilder.app_theme }} -->
       {% endif %}
-      <link href="{{url_for('appbuilder.static',filename='datepicker/bootstrap-datepicker.css')}}" rel="stylesheet">
-      <link href="{{url_for('appbuilder.static',filename='select2/select2.css')}}" rel="stylesheet">
-      <link href="{{url_for('appbuilder.static',filename='css/flags/flags16.css')}}" rel="stylesheet">
-      <link href="{{url_for('appbuilder.static',filename='css/ab.css')}}" rel="stylesheet">
     {% endblock %}
 
     {% block head_js %}
-      <script src="{{url_for('appbuilder.static',filename='js/jquery-latest.js')}}"></script>
-      <script src="{{url_for('appbuilder.static',filename='js/ab_filters.js')}}"></script>
-      <script src="{{url_for('appbuilder.static',filename='js/ab_actions.js')}}"></script>
+      <script src="{{url_for('static',filename='adminlte/plugins/jquery/jquery.min.js')}}"></script>
+      <script src="{{url_for('static',filename='adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+      <script src="{{url_for('static',filename='adminlte/js/adminlte.js')}}"></script>
+      <!-- <script src="{{url_for('appbuilder.static',filename='js/ab_filters.js')}}"></script>
+      <script src="{{url_for('appbuilder.static',filename='js/ab_actions.js')}}"></script> -->
     {% endblock %}
   </head>
-  <body >
+  <body {% block bodyparams %}{% endblock %}>
     {% block body %}
     {% endblock %}
 
     {% block tail_js %}
-      <script src="{{url_for('appbuilder.static',filename='js/bootstrap.min.js')}}"></script>
-      <script src="{{url_for('appbuilder.static',filename='datepicker/bootstrap-datepicker.js')}}"></script>
-      <script src="{{url_for('appbuilder.static',filename='select2/select2.js')}}"></script>
+      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/js/bootstrap.bundle.min.js" integrity="sha512-mULnawDVcCnsk9a4aG1QLZZ6rcce/jSzEGqUkeOLy0b6q0+T6syHrxlsAGH7ZVoqC93Pd0lBqd6WguPWih7VHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+      
       <script src="{{url_for('appbuilder.static',filename='js/ab.js')}}"></script>
     {% endblock %}
 
