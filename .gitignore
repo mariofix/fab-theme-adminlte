@@ -3,7 +3,6 @@
 
 AdminLTE-3.2.0/*
 Flask-AppBuilder/*
-app/templates/appbuilder/*
 *sublime-*
 fab_*_adminlte
 ### Flask ###

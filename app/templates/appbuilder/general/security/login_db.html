@@ -1,56 +1,72 @@
 <!-- extend base layout -->
 {% extends "appbuilder/base.html" %}
 
-
-{% block bodyparams %}class="hold-transition login-page"{% endblock %}
-{% block body %}
-<div class="login-box">
-  <div class="login-logo">
-    <a href="/">{{ app_name }}</a>
-  </div>
-  <!-- /.login-logo -->
-  <div class="card">
-    <div class="card-body login-card-body">
-      <p class="login-box-msg">{{_("Enter your login and password below")}}</p>
-
-      <form action="" method="post" name="login">
-        {{form.hidden_tag()}}
-        <div class="input-group mb-3">
-          {{ form.username(size = 80, class = "form-control", autofocus = true, placeholder = "Username") }}
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-user"></span>
+{% block bodyclass %}hold-transition{% endblock %}
+{% block content %}
+      <div class="container">
+        <div class="row justify-content-center">
+          <div class="col-lg-8 mt-5">
+            <div class="card mt-5">
+              <div class="card-body login-card-body">
+                <p class="login-box-msg">{{_("Enter your login and password below")}}</p>
+                <form class="form needs-validation" action="" method="post" name="login" novalidate>
+                  {{form.hidden_tag()}}
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><span class="fas fa-envelope"></span></div>
+                    </div>
+                    {{ form.username(size = 80, class = "form-control", autofocus = true, placeholder=_("Username"), autocomplete = "username") }}
+                  </div>
+                  <div class="input-group mb-3">
+                    <div class="input-group-prepend">
+                      <div class="input-group-text"><span class="fas fa-lock"></span></div>
+                    </div>
+                    {{ form.password(size = 80, class = "form-control", placeholder=_("Password"), autocomplete = "current-password") }}
+                  </div>
+                  <div class="row justify-content-right">
+                    <!-- /.col -->
+                    <div class="col-12">
+                      <button type="submit" class="btn btn-primary btn-block">{{_('Sign In')}}</button>
+                    </div>
+                    <!-- /.col -->
+                  </div>
+                </form>
+                {% if appbuilder.sm.auth_user_registration %}
+                  <p class="mb-0 mt-4">
+                <a href="{{appbuilder.sm.get_url_for_registeruser}}" data-toggle="tooltip" rel="tooltip"
+                title="{{_('If you are not already a user, please register')}}" class="text-center btn btn-danger btn-block">
+                    {{_('Register')}}
+                </a>
+                {% endif %}
+                </p>
+              </div>
+              </div>
             </div>
-          </div>
         </div>
-        <div class="input-group mb-3">
-          {{ form.password(size = 80, class = "form-control", placeholder="Password") }}
-          <div class="input-group-append">
-            <div class="input-group-text">
-              <span class="fas fa-lock"></span>
-            </div>
-          </div>
-        </div>
-        <div class="row">
-          <div class="col-8">
-            
-          </div>
-          <!-- /.col -->
-          <div class="col-4">
-            <button type="submit" class="btn btn-primary btn-block">{{_('Sign In')}}</button>
-          </div>
-          <!-- /.col -->
-        </div>
-      </form>
-
-      {% if appbuilder.sm.auth_user_registration %}
-      <p class="mb-0">
-        <a href="{{appbuilder.sm.get_url_for_registeruser}}" class="text-center" data-toggle="tooltip" rel="tooltip" title="{{_('If you are not already a user, please register')}}">{{_('Register')}}</a>
-      </p>
-      {% endif %}
-    </div>
-    <!-- /.login-card-body -->
-  </div>
-</div>
-<!-- /.login-box -->
+        <!-- /.row -->
+      </div><!-- /.container-fluid -->
 {% endblock %}
+
+{% block tail %}
+<script type="text/javascript">
+    (function() {
+      'use strict';
+      window.addEventListener('load', function() {
+        // Fetch all the forms we want to apply custom Bootstrap validation styles to
+        var forms = document.getElementsByClassName('needs-validation');
+        // Loop over them and prevent submission
+        var validation = Array.prototype.filter.call(forms, function(form) {
+          form.addEventListener('submit', function(event) {
+            if (form.checkValidity() === false) {
+                event.preventDefault();
+                event.stopPropagation();
+            }
+            form.classList.add('was-validated');
+          }, false);
+        });
+      }, false);
+    })();
+</script>
+{% endblock %}
+      
+    

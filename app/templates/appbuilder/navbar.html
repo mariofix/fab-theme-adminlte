@@ -1,36 +1,25 @@
-
-
-
 {% set menu = appbuilder.menu %}
 {% set languages = appbuilder.languages %}
 
-<div class="navbar {{menu.extra_classes}}" role="navigation">
+<!-- Navbar -->
+<nav class="main-header navbar navbar-expand-md navbar-light navbar-white {{menu.extra_classes}}">
    <div class="container">
-        <div class="navbar-header">
-            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-                <span class="icon-bar"></span>
-            </button>
-            {% if appbuilder.app_icon %}
-                <a class="navbar-brand" href="{{appbuilder.get_url_for_index}}">
-                <img src="{{appbuilder.app_icon}}" height="100%" width="auto">
-                </a>
-            {% else %}
-                <span class="navbar-brand">
-                <a href="{{appbuilder.get_url_for_index}}">
-                {{ appbuilder.app_name }}
-                </a>
-                </span>
-            {% endif %}                
-        </div>
-        <div class="navbar-collapse collapse">
-            <ul class="nav navbar-nav">
-                {% include 'appbuilder/navbar_menu.html' %}
-            </ul>
-            <ul class="nav navbar-nav navbar-right">
-                {% include 'appbuilder/navbar_right.html' %}
-            </ul>
-        </div>
+        <a href="{{appbuilder.get_url_for_index}}" class="navbar-brand">
+      {% if appbuilder.app_icon %}
+        <img src="{{ appbuilder.app_icon }}" alt="{{ appbuilder.app_name }}" class="brand-image img-circle elevation-3" style="opacity: .8">
+      {% endif %}
+            
+        <span class="brand-text font-weight-light">{{ appbuilder.app_name }}</span>
+      </a>
+
+      <button class="navbar-toggler order-1" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+
+      <!-- Right navbar links -->
+      <ul class="order-1 order-md-3 navbar-nav navbar-no-expand ml-auto">
+        {% include 'appbuilder/navbar_right.html' %}
+      </ul>
+
    </div>
-</div>
+</nav>

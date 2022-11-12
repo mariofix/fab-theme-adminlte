@@ -8,7 +8,7 @@
 <html>
   <head>
     <title>{% block page_title %}{{app_name}}{% endblock %}</title>
-
+    <meta charset="utf-8">
     {% block head_meta %}
       <meta name="viewport" content="width=device-width, initial-scale=1.0">
       <meta name="description" content="AdminLTE for Flask AppBuilder - {{ app_name }}">
@@ -20,8 +20,8 @@
       <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,400i,700&display=fallback">
       <!-- Font Awesome -->
       <link rel="stylesheet" href="{{url_for('static',filename='adminlte/plugins/fontawesome-free/css/all.min.css')}}">
-      <!-- icheck bootstrap -->
-      <link rel="stylesheet" href="{{url_for('static',filename='adminlte/plugins/icheck-bootstrap/icheck-bootstrap.min.css')}}">
+      <!-- flag-icon-css -->
+      <link rel="stylesheet" href="{{url_for('static',filename='adminlte/plugins/flag-icon-css/css/flag-icon.min.css')}}">
       <!-- AdminLTE -->
       <link rel="stylesheet" href="{{url_for('static',filename='adminlte/css/adminlte.css')}}">
       {% if appbuilder.app_theme %}
@@ -30,21 +30,19 @@
     {% endblock %}
 
     {% block head_js %}
-      <script src="{{url_for('static',filename='adminlte/plugins/jquery/jquery.min.js')}}"></script>
-      <script src="{{url_for('static',filename='adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
-      <script src="{{url_for('static',filename='adminlte/js/adminlte.js')}}"></script>
+      
       <!-- <script src="{{url_for('appbuilder.static',filename='js/ab_filters.js')}}"></script>
       <script src="{{url_for('appbuilder.static',filename='js/ab_actions.js')}}"></script> -->
     {% endblock %}
   </head>
-  <body {% block bodyparams %}{% endblock %}>
+  <body class="layout-footer-fixed layout-top-nav {% block bodyclass %}{% endblock %}">
     {% block body %}
     {% endblock %}
 
     {% block tail_js %}
-      <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/4.6.1/js/bootstrap.bundle.min.js" integrity="sha512-mULnawDVcCnsk9a4aG1QLZZ6rcce/jSzEGqUkeOLy0b6q0+T6syHrxlsAGH7ZVoqC93Pd0lBqd6WguPWih7VHA==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
-      
-      <script src="{{url_for('appbuilder.static',filename='js/ab.js')}}"></script>
+      <script src="{{url_for('static',filename='adminlte/plugins/jquery/jquery.min.js')}}"></script>
+      <script src="{{url_for('static',filename='adminlte/plugins/bootstrap/js/bootstrap.bundle.min.js')}}"></script>
+      <script src="{{url_for('static',filename='adminlte/js/adminlte.js')}}"></script>
     {% endblock %}
 
     {% block add_tail_js %}
