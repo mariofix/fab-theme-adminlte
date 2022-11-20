@@ -22,12 +22,12 @@ SQLALCHEMY_TRACK_MODIFICATIONS = False
 SQLALCHEMY_RECORD_QUERIES = True
 # Flask-WTF flag for CSRF
 CSRF_ENABLED = True
-
+DEBUG_TB_INTERCEPT_REDIRECTS = False
 # ------------------------------
 # GLOBALS FOR APP Builder
 # ------------------------------
 # Uncomment to setup Your App name
-# APP_NAME = "My App Name"
+APP_NAME = "F.A.B. AdminLTE"
 
 # Uncomment to setup Setup an App icon
 # APP_ICON = "static/img/logo.jpg"
@@ -67,7 +67,7 @@ AUTH_USER_REGISTRATION = True
 # Babel config for translations
 # ---------------------------------------------------
 # Setup default language
-BABEL_DEFAULT_LOCALE = "en"
+BABEL_DEFAULT_LOCALE = "es"
 # Your application default translation path
 BABEL_DEFAULT_FOLDER = "translations"
 # The allowed translation for you app
@@ -111,3 +111,28 @@ IMG_UPLOAD_URL = "/static/uploads/"
 # APP_THEME = "spacelab.css"
 # APP_THEME = "united.css"
 # APP_THEME = "yeti.css"
+EXPLAIN_TEMPLATE_LOADING = True
+# fab_theme_adminlte
+FAB_BASE_TEMPLATE = "adminlte3/baselayout.html"
+# Options from
+# https://adminlte.io/docs/3.2/layout.html#layout-options
+FAB_ADMINLTE_LAYOUT_OPTIONS = [
+    "control-sidebar-slide-open",
+    "sidebar-mini",
+    "layout-fixed",
+    "text-sm",
+    # "sidebar-collapse",
+    # "dark-mode",
+    "layout-navbar-fixed",
+    "layout-footer-fixed",
+    # "layout-top-nav",
+]
+FAB_ADMINLTE_NAVBAR_OPTIONS = [
+    "main-header",
+    "navbar",
+    "navbar-expand",
+    # "navbar-dark",
+    "navbar-white",
+    "navbar-light",
+]
+# FAB_ADMINLTE_LEGACY_NAV = False

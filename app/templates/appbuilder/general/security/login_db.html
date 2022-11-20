@@ -1,0 +1,43 @@
+<!-- extend base layout -->
+{% extends "adminlte3/base.html" -%}
+{% block content -%}
+  <div class="row mb-2">
+  <div class="col-sm-6">
+    <h1 class="m-0"> &nbsp; </h1>
+  </div>
+</div>
+<div class="card">
+  <div class="card-header">{{title}}</div>
+  <div class="card-body login-card-body">
+    <p class="login-box-msg">{{_("Enter your login and password below")}}</p>
+    <form class="form" action="" method="post" name="login">
+      {{form.hidden_tag()}}
+      <div class="input-group mb-3">
+        {{ form.username(size = 80, class = "form-control", autofocus = true, placeholder = _("Username")) }}
+        <div class="input-group-append">
+          <div class="input-group-text">
+            <span class="fas fa-user"></span>
+          </div>
+        </div>
+      </div>
+      <div class="input-group mb-3">
+        {{ form.password(size = 80, class = "form-control", placeholder=_("Password")) }}
+        <div class="input-group-append">
+          <div class="input-group-text">
+            <span class="fas fa-lock"></span>
+          </div>
+        </div>
+      </div>
+      <div class="input-group mb-3">
+        <button type="submit" class="btn btn-primary btn-block">{{_("Sign In")}}</button>
+      </div>
+    </form>
+    {% if appbuilder.sm.auth_user_registration %}
+      <p class="mb-0"><a href="{{appbuilder.sm.get_url_for_registeruser}}" data-toggle="tooltip" rel="tooltip"
+  title="{{_('If you are not already a user, please register')}}" class="btn btn-success btn-block">{{_('Register')}}</a></p>
+    {% endif %}
+  </div>
+</div>
+
+</div>
+{% endblock content %}

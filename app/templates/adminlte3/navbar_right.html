@@ -1,0 +1,27 @@
+
+{% macro locale_menu(languages) %}
+{% set locale = session['locale'] %}
+{% if not locale %}
+    {% set locale = 'en' %}
+{% endif %}
+{% if languages.keys()|length > 1 %}
+<li class="nav-item dropdown">
+    <a class="nav-link" data-toggle="dropdown" href="javascript:void(0)">
+       <i class="flag-icon  flag-icon-{{languages[locale].get('flag')}}"></i>
+    </a>
+    <div class="dropdown-menu dropdown-menu-right p-0">
+    
+    {% for lang in languages %}
+        <a href="{{appbuilder.get_url_for_locale(lang)}}" class="dropdown-item {% if lang == locale %}active{% endif %}">
+            <i class="flag-icon flag-icon-{{languages[lang].get('flag')}} mr-2"></i> {{languages[lang].get('name')}}
+        </a>
+    {% endfor %}
+        
+    </div>
+</li>
+{% endif %}
+{% endmacro %}
+
+
+
+{{ locale_menu(languages) }}

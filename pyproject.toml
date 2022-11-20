@@ -9,7 +9,7 @@ packages = [{include = "fab_theme_adminlte"}]
 [tool.poetry.dependencies]
 python = "^3.9"
 flask-appbuilder = "^4.1.5"
-flask-debugtoolbar = "^0.13.1"
+flask-debugtoolbar = {git = "https://github.com/pallets-eco/flask-debugtoolbar.git", rev = "master"}
 
 
 [build-system]

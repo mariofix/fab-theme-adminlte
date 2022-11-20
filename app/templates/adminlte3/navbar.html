@@ -1,0 +1,51 @@
+{% set menu = appbuilder.menu -%}
+{% set languages = appbuilder.languages -%}
+
+<ul class="navbar-nav">
+  <li class="nav-item">
+    <a class="nav-link" data-widget="pushmenu" href="#" role="button"><i class="fas fa-bars"></i></a>
+  </li>
+</ul>
+{% block nav_control -%}
+{% endblock -%}
+<ul class="navbar-nav ml-auto">
+  {% block access_control -%}
+  {% endblock -%}
+</ul>
+{% block menu_links %}
+<ul class="navbar-nav navbar-right">
+  {% include 'adminlte3/navbar_right.html' -%}
+</ul>
+{% endblock menu_links %}
+{#
+<div class="navbar {{menu.extra_classes}}" role="navigation">
+ <div class="container">
+    <div class="navbar-header">
+      <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".navbar-collapse">
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+        <span class="icon-bar"></span>
+      </button>
+      {% if appbuilder.app_icon %}
+        <a class="navbar-brand" href="{{appbuilder.get_url_for_index}}">
+        <img src="{{appbuilder.app_icon}}" height="100%" width="auto">
+        </a>
+      {% else %}
+        <span class="navbar-brand">
+        <a href="{{appbuilder.get_url_for_index}}">
+        {{ appbuilder.app_name }}
+        </a>
+        </span>
+      {% endif %}
+    </div>
+    <div class="navbar-collapse collapse">
+      <ul class="nav navbar-nav">
+        {% include 'appbuilder/navbar_menu.html' %}
+      </ul>
+      <ul class="nav navbar-nav navbar-right">
+        {% include 'appbuilder/navbar_right.html' %}
+      </ul>
+    </div>
+ </div>
+</div>
+#}

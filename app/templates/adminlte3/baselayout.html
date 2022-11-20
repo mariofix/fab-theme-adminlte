@@ -1,0 +1,108 @@
+{% extends 'adminlte3/init.html' -%}
+{% import 'appbuilder/baselib.html' as baselib -%}
+
+{% block body -%}
+<div class="wrapper">
+  {% block preloader -%}
+  {% endblock -%}
+
+  {% include 'adminlte3/general/confirm.html' -%}
+  {% include 'adminlte3/general/alert.html' -%}
+
+  {% block navbar -%}
+    <nav class="{{ config.get('FAB_ADMINLTE_NAVBAR_OPTIONS', [])| join(' ') }}">
+    {% include 'adminlte3/navbar.html' -%}
+    </nav>
+  {% endblock -%}
+
+  <aside class="main-sidebar sidebar-dark-primary elevation-4">
+    {% block brand -%}
+    <!-- Logo -->
+    <a href="{{appbuilder.get_url_for_index}}" class="brand-link">
+      <img src="{{appbuilder.app_icon|default(url_for('static', filename='adminlte3/img/AdminLTELogo.png'), true)}}" alt="{{ appbuilder.app_name }}" class="brand-image img-circle elevation-3" style="opacity: .8">
+      <span class="brand-text font-weight-light">{{ appbuilder.app_name }}</span>
+    </a>
+    {% endblock brand -%}
+
+    <div class="sidebar">
+      {% block user_panel -%}
+      {% if not current_user.is_anonymous %}
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{{ url_for('static', filename='adminlte3/img/avatar4.png') }}" class="img-circle elevation-2" alt="{{current_user.username }}">
+        </div>
+        <div class="info">
+            <span class="d-block">
+                <a href="{{appbuilder.get_url_for_userinfo}}">{{ g.user.get_full_name()}} </a> - 
+                <a href="{{appbuilder.get_url_for_logout}}">{{ _("Logout") }}</a>
+            </span>
+        </div>
+      </div>  
+      {% else %}
+      <div class="user-panel mt-3 pb-3 mb-3 d-flex">
+        <div class="image">
+          <img src="{{ url_for('static', filename='adminlte3/img/avatar4.png') }}" class="img-circle elevation-2" alt="{{_("Login")}}">
+        </div>
+        <div class="info">
+            <span class="d-block">
+                <a href="{{ url_for('AuthDBView.login') }}" class="d-block">{{_("Login")}}</a>
+            </span>
+        </div>
+      </div>  
+      {% endif %}
+          
+      {% endblock user_panel -%}
+
+      {% block main_menu -%}
+      <nav class="mt-2">
+        <ul class="nav nav-pills nav-sidebar flex-column {% if appbuilder.app.config.get('FAB_ADMINLTE_LEGACY_NAV', False) %}nav-legacy{% endif %}" data-widget="treeview" role="menu" data-accordion="false">
+          
+        </ul>
+      </nav>
+      {% endblock main_menu -%}
+    </div>
+  </aside>
+
+
+
+  <div class="content-wrapper">
+    {% block content_header %}
+    <section class="content-header">
+      <div class="container-fluid">
+        <div class="row mb-2">
+          <div class="col-sm-6">
+            <h1>{{title}}</h1>
+          </div>
+          <div class="col-sm-6">
+            <ol class="breadcrumb float-sm-right">
+              <li class="breadcrumb-item"><a href="{{appbuilder.get_url_for_index}}">{{ _("Home") }}</a></li>
+              <li class="breadcrumb-item active">{{ title }}</li>
+            </ol>
+          </div>
+        </div>
+      </div>
+    </section>
+    {% endblock content_header %}
+        
+    <div class="content">
+      <div class="container-fluid">
+          {% block messages %}
+            {% include 'appbuilder/flash.html' %}
+          {% endblock %}
+          {% block content %}
+          {% endblock %}
+      </div>
+    </div>
+  </div>
+
+  <footer class="main-footer">
+      {% block footer %}
+      <div class="float-right d-none d-sm-inline">
+          Version 1.0.0
+      </div>
+      <strong><a href="http://adminlte.io">AdminLTE.io</a></strong>
+      {% endblock footer %}
+  </footer>
+</div>
+{% endblock body %}
+
